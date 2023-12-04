@@ -12,6 +12,9 @@ public class LoginController {
 
     @FXML
     protected void loginBtnAction(ActionEvent event) throws Exception {
+
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/csc325_firebase_webview_auth/AccessFBView.fxml").toURI().toURL());
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/style.css").toExternalForm());
@@ -23,7 +26,7 @@ public class LoginController {
     protected void createAccountAction(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/dev/smartstacks/smartstacks/view/create-account.fxml").toURI().toURL());
         Scene scene = new Scene(root);
-        //scene.getStylesheets().add(getClass().getResource("STYLE NAME").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/style.css").toExternalForm());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

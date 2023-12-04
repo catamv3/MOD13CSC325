@@ -12,15 +12,12 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.UserRecord;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,11 +30,11 @@ public class AccessFBView {
 
 
      @FXML
-    private TextField nameField;
+    private TextField tfName;
     @FXML
-    private TextField majorField;
+    private TextField tfMajor;
     @FXML
-    private TextField ageField;
+    private TextField tfAge;
     @FXML
     private Button writeButton;
     @FXML
@@ -54,8 +51,8 @@ public class AccessFBView {
     void initialize() {
 
         AccessDataViewModel accessDataViewModel = new AccessDataViewModel();
-        nameField.textProperty().bindBidirectional(accessDataViewModel.userNameProperty());
-        majorField.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
+        tfName.textProperty().bindBidirectional(accessDataViewModel.userNameProperty());
+        tfMajor.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
     }
 
@@ -84,9 +81,9 @@ public class AccessFBView {
         DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
 
         Map<String, Object> data = new HashMap<>();
-        data.put("Name", nameField.getText());
-        data.put("Major", majorField.getText());
-        data.put("Age", Integer.parseInt(ageField.getText()));
+        data.put("Name", tfName.getText());
+        data.put("Major", tfMajor.getText());
+        data.put("Age", Integer.parseInt(tfAge.getText()));
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }

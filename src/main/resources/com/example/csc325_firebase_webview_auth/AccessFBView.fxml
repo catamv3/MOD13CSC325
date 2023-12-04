@@ -12,9 +12,9 @@
    <children>
       <VBox alignment="CENTER_RIGHT" layoutX="7.0" prefHeight="166.0" prefWidth="485.0" spacing="10.0">
          <children>
-            <TextField fx:id="nameField" alignment="TOP_LEFT" promptText="Name" />
-            <TextField fx:id="majorField" promptText="Major" />
-            <TextField fx:id="ageField" promptText="Age" />
+            <TextField fx:id="tfName" alignment="TOP_LEFT" promptText="Name" />
+            <TextField fx:id="tfMajor" promptText="Major" />
+            <TextField fx:id="tfAge" promptText="Age" />
             <HBox prefHeight="32.0" prefWidth="465.0">
                <children>
                   <Button fx:id="readButton" mnemonicParsing="false" onAction="#readRecord" text="Read" textAlignment="CENTER">

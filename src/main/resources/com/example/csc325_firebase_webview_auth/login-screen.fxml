@@ -19,7 +19,7 @@
         </Text>
         <VBox layoutX="306.0" layoutY="300.0" prefHeight="200.0" prefWidth="189.0" spacing="20.0">
             <children>
-                <TextField fx:id="usernameOrEmail" alignment="CENTER" prefHeight="36.0" prefWidth="189.0" promptText="Username or Email" styleClass="text-field">
+                <TextField fx:id="usernameOrEmail" alignment="CENTER" prefHeight="36.0" prefWidth="189.0" promptText="Username" styleClass="text-field">
                     <font>
                         <Font name="Arial Black" size="12.0" />
                     </font>

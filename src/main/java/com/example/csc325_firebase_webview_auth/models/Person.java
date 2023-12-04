@@ -9,9 +9,20 @@ package com.example.csc325_firebase_webview_auth.models;
  * @author MoaathAlrajab
  */
 public class Person {
+
+    private String userName;
+    private String password;
     private String name;
     private String major;
     private int age;
+
+    public Person(String userName, String password, String name, String major, int age) {
+        this.userName = userName;
+        this.password = password;
+        this.name = name;
+        this.major = major;
+        this.age = age;
+    }
 
     public Person(String name, String major, int age) {
         this.name = name;

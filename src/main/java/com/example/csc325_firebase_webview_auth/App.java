@@ -1,6 +1,8 @@
 package com.example.csc325_firebase_webview_auth;
 
 
+import com.example.csc325_firebase_webview_auth.modelview.AccessFBView;
+import com.example.csc325_firebase_webview_auth.modelview.LoginController;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.auth.FirebaseAuth;
 import java.io.IOException;
@@ -19,19 +21,38 @@ public class App extends Application {
     //enabling firestore
     public static FirebaseAuth fauth;
     public static Scene scene;
+    public static Stage stage;
     private final FirestoreContext contxtFirebase = new FirestoreContext();
 
-    private static boolean lightMode = true;
 
+    private static boolean lightMode = false;
+    public AccessFBView accessFBView = new AccessFBView();
+    public LoginController loginController = new LoginController();
     @Override
     public void start(Stage primaryStage) throws Exception {
+        stage = new Stage();
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
         scene = new Scene(loadFXML("login-screen.fxml"));
-        //scene.getStylesheets().add(getClass().getResource("lightTheme.css").toExternalForm());
+        setScene(scene);
+        setStage();
+    }
+
+    public static void setStage(){
+        stage.setScene(App.getScene());
+        stage.show();
+    }
+
+    public static void setScene(Scene s) {
+        scene = s;
         setTheme(scene);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
+    }
+
+    public static Stage getStage(){return stage;}
+
+    public static Scene getScene() {
+        return scene;
     }
 
     public static void setRoot(String fxml) throws IOException {
@@ -77,5 +98,9 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
+
 
 }

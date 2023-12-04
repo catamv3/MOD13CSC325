@@ -29,7 +29,11 @@ public class CreateAccountController implements Initializable {
     private static boolean userHasRegisteredStatus = false;
     private boolean flag = false;
 
+    private Scene scene;
+    private Stage stage;
+
     private AccessFBView access = new AccessFBView();
+    private LoginController loginController;
 
 
 
@@ -166,12 +170,8 @@ public class CreateAccountController implements Initializable {
 
     @FXML
     private void returnToLogin(ActionEvent event) throws IOException {
-
-        Scene scene = new Scene(App.loadFXML("login-screen.fxml"));
-        App.setTheme(scene);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        App.setScene(new Scene(App.loadFXML("login-screen.fxml")));
+        App.setStage();
     }
 
     public static boolean userHasRegistered() {

@@ -19,8 +19,8 @@
     -fx-cursor: pointer;
     -fx-color: #dfecf2;
     -fx-font-family: Arial;
-    -fx-font-size: 15px;
-    -fx-padding: 10px 32px;
+    -fx-font-size: 12px;
+    -fx-padding:10px 2px;
     -fx-text-decoration: none;
 }
 .button:hover {
@@ -29,4 +29,10 @@
 .button:active {
 	-fx-position:relative;
 	-fx-top:1px;
+}
+
+
+.textView{
+    -fx-background-color: #a9d1de;
+    -fx-text-color: #096482;
 }

@@ -9,7 +9,9 @@
 
 .text-field {
     -fx-background-color: #c88adb; /* Light Orange */
-    -fx-text-fill: #9c4072 /* Dark Red Text Color */
+    -fx-text-color: #3a1869;
+    -fx-background-text: #3a1869;
+     /* Dark Red Text Color */
 }
 .button {
     -fx-background-color: #35148f;
@@ -17,8 +19,8 @@
     -fx-cursor: pointer;
     -fx-color: #692580;
     -fx-font-family: Arial;
-    -fx-font-size: 15px;
-    -fx-padding: 10px 32px;
+    -fx-font-size: 12px;
+    -fx-padding: 10px 2px;
     -fx-text-decoration: none;
 }
 
@@ -30,3 +32,17 @@
     -fx-position: relative;
     -fx-top: 1px;
 }
+
+
+.textView{
+    -fx-background-color: #aa8fcc;
+    -fx-text-color: #5919a8;
+}
+
+
+.outputLabel{
+    -fx-color: black ;
+    -fx-font-family: Arial;
+    -fx-font-size: 18px;
+}
+

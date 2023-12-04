@@ -14,8 +14,9 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-
+//https://www.youtube.com/watch?v=pmASVHuh1e0&t=579s
     public static Firestore fstore;
+    //enabling firestore
     public static FirebaseAuth fauth;
     public static Scene scene;
     private final FirestoreContext contxtFirebase = new FirestoreContext();
@@ -24,7 +25,8 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
-        scene = new Scene(loadFXML("AccessFBView.fxml"));
+        scene = new Scene(loadFXML("login-screen.fxml"));
+        scene.getStylesheets().add(getClass().getResource("lightTheme.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

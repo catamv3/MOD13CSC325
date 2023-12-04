@@ -16,7 +16,7 @@ public class FirestoreContext {
     public Firestore firebase() {
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("/com/example/csc325_firebase_webview_auth/key.json")))
+                    .setCredentials(GoogleCredentials.fromStream(getClass().getResourceAsStream("key.json")))
                     .build();
             FirebaseApp.initializeApp(options);
             System.out.println("Firebase is initialized");

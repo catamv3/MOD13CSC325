@@ -1,0 +1,32 @@
+.anchorbackground{
+    -fx-background-color: azure;
+}
+
+.anchorrectangle{
+    -fx-fill: #4f96b8;
+    -fx-stroke: #abd8ed;
+}
+
+.text-field {
+    -fx-background-color: #abd8ed; /* light blue */
+    -fx-text-fill: #dfecf2; /* light blue */
+}
+
+
+.button {
+    -fx-background-color: #0275AB;
+    -fx-display: inline-block;
+    -fx-cursor: pointer;
+    -fx-color: #dfecf2;
+    -fx-font-family: Arial;
+    -fx-font-size: 15px;
+    -fx-padding: 10px 32px;
+    -fx-text-decoration: none;
+}
+.button:hover {
+	-fx-background-color:#90d2de;
+}
+.button:active {
+	-fx-position:relative;
+	-fx-top:1px;
+}

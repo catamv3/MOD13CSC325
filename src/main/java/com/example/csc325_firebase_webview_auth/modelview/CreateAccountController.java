@@ -1,15 +1,11 @@
 package com.example.csc325_firebase_webview_auth.modelview;
 
 import com.example.csc325_firebase_webview_auth.App;
-import com.example.csc325_firebase_webview_auth.models.Person;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.UserRecord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -29,7 +25,7 @@ public class CreateAccountController implements Initializable {
     @FXML
     private TextField tfUsername, tfName, tfMajor, tfAge;
     public Label labelSuccessMsg;
-    public Button createAccountBtn;
+    public Button createAccountButton;
     private static boolean userHasRegisteredStatus = false;
     private boolean flag = false;
 
@@ -40,7 +36,7 @@ public class CreateAccountController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<TextField> textFieldList = List.of(tfUsername, tfPassword, tfConfirmPassword, tfName, tfMajor,tfAge);
-        createAccountBtn.setDisable(true); // initially disable add button
+        createAccountButton.setDisable(true); // initially disable add button
 
         // Add a key pressed listener to each text field
         textFieldList.forEach(textField -> {
@@ -72,10 +68,10 @@ public class CreateAccountController implements Initializable {
 
         tfName.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (tfName.getText().matches("[A-Za-z]{2,12}[\\s][A-Za-z]{2,13}")) {
-                tfMajor.setEditable(true);
                 tfName.setBorder(null);
+                tfMajor.setEditable(true);
             } else {
-                tfName.setTooltip(new Tooltip("Email must contain an @ symbol.")); // will appear when hovering over textfield
+                tfName.setTooltip(new Tooltip("Name can be between 2-12 letters, first and last name.")); // will appear when hovering over textfield
                 tfName.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
                 tfName.setVisible(true);
                 tfMajor.setEditable(false);
@@ -89,8 +85,8 @@ public class CreateAccountController implements Initializable {
 
         tfMajor.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (tfMajor.getText().toUpperCase().matches("[A-Z]{3}")) {
+                tfMajor.setBorder(null);
                 tfAge.setEditable(true);
-                tfName.setBorder(null);
             } else {
                 tfMajor.setTooltip(new Tooltip("Majors must be 3 characters. Ex: \'CSC\' Oor \'PSY\'")); // will appear when hovering over textfield
                 tfMajor.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
@@ -104,10 +100,11 @@ public class CreateAccountController implements Initializable {
         });
 
         tfAge.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (tfAge.getText().matches("^(1[3-9]|[2-9][0-9])$")) {
+            if (tfAge.getText().matches("(1[3-9]||[2-9][0-9])$")) {
+                tfAge.setBorder(null);
                 tfPassword.setEditable(true);
                 tfConfirmPassword.setEditable(true);
-                tfName.setBorder(null);
+
             } else {
                 tfAge.setTooltip(new Tooltip("Invalid age. must be at least 13 and no more than 99 years old.")); // will appear when hovering over textfield
                 tfAge.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
@@ -134,12 +131,13 @@ public class CreateAccountController implements Initializable {
         tfConfirmPassword.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (tfConfirmPassword.getText().equals(tfPassword.getText())) { // simple check to see this field's text matches the password typed above
                 tfConfirmPassword.setBorder(null);
-                createAccountBtn.setDisable(false);
+                createAccountButton.setDisable(false);
             } else {
                 tfConfirmPassword.setTooltip(new Tooltip("Password must match.")); // will appear when hovering over textfield
                 tfConfirmPassword.setStyle("-fx-border-color: red ; -fx-border-width: 1px ;");
                 tfConfirmPassword.setVisible(true);
                 tfConfirmPassword.requestFocus();
+                createAccountButton.setDisable(false);
                 flag = true;
             }
         });
@@ -158,13 +156,19 @@ public class CreateAccountController implements Initializable {
         data.put("age", Integer.parseInt(tfAge.getText()));
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
+
+        Scene scene = new Scene(App.loadFXML("AccessFBView.fxml"));
+        //scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/style.css").toExternalForm());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
+    @FXML
     private void returnToLogin(ActionEvent event) throws IOException {
 
         Scene scene = new Scene(App.loadFXML("login-screen.fxml"));
-        scene.getStylesheets().add(getClass().getResource("lightTheme.css").toExternalForm());
-        scene.getStylesheets().add("lightTheme.css");
+        App.setTheme(scene);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

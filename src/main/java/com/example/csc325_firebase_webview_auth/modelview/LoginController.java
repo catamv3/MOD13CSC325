@@ -4,12 +4,24 @@ import com.example.csc325_firebase_webview_auth.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.IndexedCell;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class LoginController {
+
+    @FXML
+    private Button createAccountButton = new Button();
+
+
+
 
     @FXML
     protected void loginBtnAction(ActionEvent event) throws Exception {
@@ -34,6 +46,8 @@ public class LoginController {
     public void exitOnAction(ActionEvent actionEvent) {
         System.exit(0);
     }
+
+
 }
 
 

@@ -25,25 +25,31 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.w3c.dom.Text;
 
 public class AccessFBView {
 
 
-     @FXML
+    @FXML
     private TextField tfName;
     @FXML
     private TextField tfMajor;
     @FXML
     private TextField tfAge;
+
+    @FXML
+    private TextField tfUsername, tfPassword;
+
     @FXML
     private Button writeButton;
     @FXML
     private Button readButton;
     @FXML
     private TextArea outputField;
-     private boolean key;
+    private boolean key;
     private ObservableList<Person> listOfUsers = FXCollections.observableArrayList();
     private Person person;
+
     public ObservableList<Person> getListOfUsers() {
         return listOfUsers;
     }
@@ -61,17 +67,17 @@ public class AccessFBView {
         addData();
     }
 
-        @FXML
+    @FXML
     private void readRecord(ActionEvent event) {
         readFirebase();
     }
 
-            @FXML
+    @FXML
     private void regRecord(ActionEvent event) {
         registerUser();
     }
 
-     @FXML
+    @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("WebContainer.fxml");
     }
@@ -81,54 +87,50 @@ public class AccessFBView {
         DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
 
         Map<String, Object> data = new HashMap<>();
-        data.put("Name", tfName.getText());
-        data.put("Major", tfMajor.getText());
-        data.put("Age", Integer.parseInt(tfAge.getText()));
+        data.put("username", tfUsername.getText());
+        data.put("password", tfName.getText());
+        data.put("name", tfName.getText());
+        data.put("major", tfMajor.getText());
+        data.put("age", Integer.parseInt(tfAge.getText()));
         //asynchronously write data
         ApiFuture<WriteResult> result = docRef.set(data);
     }
 
-        public boolean readFirebase()
-         {
-             key = false;
+    public boolean readFirebase() {
+        key = false;
 
         //asynchronously retrieve all documents
-        ApiFuture<QuerySnapshot> future =  App.fstore.collection("References").get();
+        ApiFuture<QuerySnapshot> future = App.fstore.collection("References").get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents;
-        try
-        {
+        try {
             documents = future.get().getDocuments();
-            if(documents.size()>0)
-            {
+            if (documents.size() > 0) {
                 System.out.println("Outing....");
-                for (QueryDocumentSnapshot document : documents)
-                {
-                    outputField.setText(outputField.getText()+ document.getData().get("Name")+ " , Major: "+
-                            document.getData().get("Major")+ " , Age: "+
-                            document.getData().get("Age")+ " \n ");
-                    System.out.println(document.getId() + " => " + document.getData().get("Name"));
-                    person  = new Person(String.valueOf(document.getData().get("Name")),
-                            document.getData().get("Major").toString(),
-                            Integer.parseInt(document.getData().get("Age").toString()));
+                for (QueryDocumentSnapshot document : documents) {
+                    outputField.setText(outputField.getText() + document.getData().get("name") +
+                            " , Major: " + document.getData().get("major") +
+                            " , Age: " + document.getData().get("age") +
+                            " , Username: " + document.getData().get("username") +
+                            " , Password: " + document.getData().get("password") + " \n ");
+                    System.out.println(document.getId() + " => " + document.getData().get("name"));
+                    person = new Person(document.getData().get("username").toString(),document.getData().get("password").toString(), String.valueOf(document.getData().get("name")),
+                            document.getData().get("major").toString(),
+                            Integer.parseInt(document.getData().get("age").toString()));
                     listOfUsers.add(person);
                 }
+            } else {
+                System.out.println("No data");
             }
-            else
-            {
-               System.out.println("No data");
-            }
-            key=true;
+            key = true;
 
-        }
-        catch (InterruptedException | ExecutionException ex)
-        {
-             ex.printStackTrace();
+        } catch (InterruptedException | ExecutionException ex) {
+            ex.printStackTrace();
         }
         return key;
     }
 
-        public void sendVerificationEmail() {
+    public void sendVerificationEmail() {
         try {
             UserRecord user = App.fauth.getUser("name");
             //String url = user.getPassword();
@@ -153,7 +155,7 @@ public class AccessFBView {
             return true;
 
         } catch (FirebaseAuthException ex) {
-           // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
+            // Logger.getLogger(FirestoreContext.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
 

@@ -21,12 +21,15 @@ public class App extends Application {
     public static Scene scene;
     private final FirestoreContext contxtFirebase = new FirestoreContext();
 
+    private static boolean lightMode = true;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         fstore = contxtFirebase.firebase();
         fauth = FirebaseAuth.getInstance();
         scene = new Scene(loadFXML("login-screen.fxml"));
-        scene.getStylesheets().add(getClass().getResource("lightTheme.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("lightTheme.css").toExternalForm());
+        setTheme(scene);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -38,6 +41,37 @@ public class App extends Application {
     public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml));
         return fxmlLoader.load();
+    }
+
+
+    public static void changeTheme() {
+
+        scene.getStylesheets().clear(); // Remove existing stylesheets
+
+        if (lightMode) {
+            scene.getStylesheets().add(App.class.getResource("darkTheme.css").toExternalForm());
+            lightMode = false;
+        } else {
+            scene.getStylesheets().add(App.class.getResource("lightTheme.css").toExternalForm());
+            lightMode = true;
+        }
+    }
+
+    public static void setTheme(Scene scene) {
+        scene.getStylesheets().clear(); // Remove existing stylesheets
+
+        if (lightMode) {
+            scene.getStylesheets().add(App.class.getResource("lightTheme.css").toExternalForm());
+        } else {
+            scene.getStylesheets().add(App.class.getResource("darkTheme.css").toExternalForm());
+        }
+    }
+
+    public static boolean getLightMode(){
+        return lightMode;
+    }
+    public static void setLightMode(boolean b){
+        lightMode = b;
     }
 
     public static void main(String[] args) {

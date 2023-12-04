@@ -1,0 +1,32 @@
+.anchorbackground{
+    -fx-background-color: #652d6b;
+}
+
+.anchorrectangle{
+    -fx-fill: #a753c2;
+    -fx-stroke: #c88adb;
+}
+
+.text-field {
+    -fx-background-color: #c88adb; /* Light Orange */
+    -fx-text-fill: #9c4072 /* Dark Red Text Color */
+}
+.button {
+    -fx-background-color: #35148f;
+    -fx-display: inline-block;
+    -fx-cursor: pointer;
+    -fx-color: #692580;
+    -fx-font-family: Arial;
+    -fx-font-size: 15px;
+    -fx-padding: 10px 32px;
+    -fx-text-decoration: none;
+}
+
+.button:hover {
+    -fx-background-color: #a863bf;
+}
+
+.button:active {
+    -fx-position: relative;
+    -fx-top: 1px;
+}

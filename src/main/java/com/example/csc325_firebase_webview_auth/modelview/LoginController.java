@@ -1,5 +1,6 @@
 package com.example.csc325_firebase_webview_auth.modelview;
 
+import com.example.csc325_firebase_webview_auth.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,21 +13,19 @@ public class LoginController {
 
     @FXML
     protected void loginBtnAction(ActionEvent event) throws Exception {
-
-
-
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/csc325_firebase_webview_auth/AccessFBView.fxml").toURI().toURL());
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/style.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/style.css").toExternalForm());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
     @FXML
     protected void createAccountAction(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/dev/smartstacks/smartstacks/view/create-account.fxml").toURI().toURL());
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/csc325_firebase_webview_auth/create-account.fxml").toURI().toURL());
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/style.css").toExternalForm());
+        App.setTheme(scene);
+        //scene.getStylesheets().add(getClass().getResource("/dev/smartstacks/smartstacks/styling/lightTheme.css").toExternalForm());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

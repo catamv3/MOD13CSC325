@@ -2,6 +2,11 @@ package com.example.csc325_firebase_webview_auth.modelview;
 
 import com.example.csc325_firebase_webview_auth.App;
 import com.example.csc325_firebase_webview_auth.models.Person;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,8 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CreateAccountController implements Initializable {
 
@@ -144,17 +148,16 @@ public class CreateAccountController implements Initializable {
 
     @FXML
     protected void createAccountAction(ActionEvent event) throws IOException, InterruptedException {
-        Person newUser = new Person(tfUsername.getText(), tfPassword.getText(), tfName.getText(), tfMajor.getText(), Integer.parseInt(tfAge.getText()));
-        access.addData();
-        UserSession.getInstance(tfUsername.getText(), tfPassword.getText(), "REGISTERED");
-        userHasRegisteredStatus = true;
+        DocumentReference docRef = App.fstore.collection("References").document(UUID.randomUUID().toString());
 
-        // perform db operation
-        if (dbConnection.insertUser(newUser)) {
-            Thread.sleep(1500);
-            returnToLogin(event);
-        }
-
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", tfUsername.getText());
+        data.put("password", tfPassword.getText());
+        data.put("name", tfName.getText());
+        data.put("major", tfMajor.getText());
+        data.put("age", Integer.parseInt(tfAge.getText()));
+        //asynchronously write data
+        ApiFuture<WriteResult> result = docRef.set(data);
     }
 
     private void returnToLogin(ActionEvent event) throws IOException {

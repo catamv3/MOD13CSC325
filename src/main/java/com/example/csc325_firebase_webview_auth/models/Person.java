@@ -10,14 +10,14 @@ package com.example.csc325_firebase_webview_auth.models;
  */
 public class Person {
 
-    private String userName;
+    private String username;
     private String password;
     private String name;
     private String major;
     private int age;
 
     public Person(String userName, String password, String name, String major, int age) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
         this.name = name;
         this.major = major;
@@ -28,6 +28,22 @@ public class Person {
         this.name = name;
         this.major = major;
         this.age = age;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {

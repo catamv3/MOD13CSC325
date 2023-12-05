@@ -13,8 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
-
+import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,7 +29,7 @@ public class LoginController implements Initializable {
     private Stage stage;
 
     @FXML
-    private Label outputLabel;
+    private Text outputLabel;
 
     @FXML
     private TextField tfUsername, tfPassword;
@@ -43,16 +42,21 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ////anchorBackground.requestFocus();
-        stage = App.getStage();
-        scene = App.getScene();
+        //stage = App.getStage();
+        //scene = App.getScene();
+        outputLabel.setText("Enter a username");
 
         tfUsername.setOnMouseClicked(e->{
+
             outputLabel.setText("Enter a username");
         });
 
         tfPassword.setOnMouseClicked(e->{
             outputLabel.setText("Enter a password");
         });
+
+
+
 
     }
 

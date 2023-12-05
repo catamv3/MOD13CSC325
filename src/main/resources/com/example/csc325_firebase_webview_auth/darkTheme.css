@@ -41,8 +41,16 @@
 
 
 .outputLabel{
-    -fx-color: black ;
+    -fx-fill: white;
     -fx-font-family: Arial;
     -fx-font-size: 18px;
+}
+
+.menu-bar {
+    /*  -fx-background-color: #FF9100; */
+    -fx-background-color: #ab22ba; /* eggplant purple */
+}
+.menu-item {
+    -fx-background-color: #c691cc; /* light purple*/
 }
 

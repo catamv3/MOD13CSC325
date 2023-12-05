@@ -61,6 +61,6 @@
                 <Font name="Arial Black" size="12.0" />
             </font>
         </Button>
-      <Text fx:id="outputLabel" layoutX="627.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outputLabel" wrappingWidth="22.13671875" />
+      <Text fx:id="outputLabel" layoutX="510.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="outputLabel" wrappingWidth="247.47006225585938" />
     </children>
 </AnchorPane>

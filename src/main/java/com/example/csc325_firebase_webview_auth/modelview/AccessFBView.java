@@ -62,6 +62,9 @@ public class AccessFBView implements Initializable {
     @FXML
     private Text outputLabel;
 
+    @FXML
+    private MenuItem switchMI;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AccessDataViewModel accessDataViewModel = new AccessDataViewModel();
@@ -69,9 +72,12 @@ public class AccessFBView implements Initializable {
         tfMajor.textProperty().bindBidirectional(accessDataViewModel.userMajorProperty());
         writeButton.disableProperty().bind(accessDataViewModel.isWritePossibleProperty().not());
 
-
         List<TextField> textFieldList = List.of(tfUsername, tfPassword, tfConfirmPassword, tfName, tfMajor,tfAge);
         regButton.setDisable(true); // initially disable add button
+
+        switchMI.setOnAction(event -> {
+            App.changeTheme();
+        });
 
         // Add a key pressed listener to each text field
         textFieldList.forEach(textField -> {
@@ -196,6 +202,9 @@ public class AccessFBView implements Initializable {
             }
         });
 
+
+
+
     }
 
     @FXML
@@ -274,6 +283,9 @@ public class AccessFBView implements Initializable {
         } catch (Exception e) {
         }
     }
+
+
+
 
     public boolean registerUser() {
         UserRecord.CreateRequest request = new UserRecord.CreateRequest()

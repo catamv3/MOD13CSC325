@@ -22,7 +22,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="View">
               <items>
-                <MenuItem fx:id="miSwitchTheme" mnemonicParsing="false" text="Switch" />
+                <MenuItem fx:id="switchMI" mnemonicParsing="false" text="Switch" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" styleClass="menu-item" text="Edit">

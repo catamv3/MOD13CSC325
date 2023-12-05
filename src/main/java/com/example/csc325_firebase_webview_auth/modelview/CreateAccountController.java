@@ -55,6 +55,9 @@ public class CreateAccountController implements Initializable {
                     flag = false;
                 }
             });
+            textField.setOnMouseClicked(mouseEvent -> {
+                textField.requestFocus();
+            });
         });
 
         tfUsername.focusedProperty().addListener((observable, oldValue, newValue) -> {

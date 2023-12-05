@@ -36,3 +36,12 @@
     -fx-background-color: #a9d1de;
     -fx-text-color: #096482;
 }
+
+.menu-bar {
+    /*  -fx-background-color: #FF9100; */
+    -fx-background-color: #91a2cc /* eggplant purple */
+}
+.menu-item {
+    -fx-background-color: #8cb1bd; /* light purple*/
+}
+
